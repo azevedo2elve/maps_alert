@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\MapController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [MapController::class, 'index']);
+
+Route::get('/map', [MapController::class, 'alert'])->name('map.alert');

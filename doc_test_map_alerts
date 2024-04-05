@@ -1,0 +1,25 @@
+http://127.0.0.1:8000/map?_token=BqMmRrqz35zjvPPlmoRMUYeErgFyRHW63KKgy4wL&lat=-29.88098798716813&lng=-51.17667675018311
+
+function com a formula:
+	lat = -29.88096938203192
+	lng = -51.176676750183
+	
+PointN [▼ // app/Http/Controllers/MapController.php:48
+  "lat" => -29.836
+  "lng" => -51.17668211460114
+]
+
+PointS [▼ // app/Http/Controllers/MapController.php:48
+  "lat" => -29.925
+  "lng" => -51.176
+]
+
+PointL [▼ // app/Http/Controllers/MapController.php:48
+  "lat" => -29.88
+  "lng" => -51.124
+]
+
+PointO [▼ // app/Http/Controllers/MapController.php:48
+  "lat" => -29.88
+  "lng" => -51.228
+]
