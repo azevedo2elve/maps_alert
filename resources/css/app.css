@@ -6,3 +6,8 @@
     height: 500px; 
     width: 800px;
 }
+
+.icone {
+    width: 30px; /* Defina a largura */
+    height: 30px; /* Defina a altura */
+}

@@ -30,7 +30,39 @@ class MapController extends Controller
 
         $data = json_decode($response, true);
 
-        return view('map', compact('data'));
+        //dd($data);
+
+        $data_type = [];
+        foreach ($data['alerts'] as $key => $value){
+            array_push($data_type, $value['subtype']);
+        }
+
+        //dd($data_type);
+
+        $police = [];
+        $hazard = [];
+        $roadClosed = [];
+        $jam = [];
+        
+        foreach ($data['alerts'] as $key => $value){
+            if ($value['type'] == 'POLICE')
+            {
+                array_push($police, $value);
+            } elseif ($value['type'] == 'HAZARD')
+            {
+                array_push($hazard, $value);
+            } elseif ($value['type'] == 'ROAD_CLOSED')
+            {
+                array_push($roadClosed, $value);
+            } elseif ($value['type'] == 'JAM')
+            {
+                array_push($jam, $value);
+            }
+        }
+        
+        //dd($hazard);
+
+        return view('map', compact('data', 'police', 'hazard', 'roadClosed', 'jam'));
     }
 
     public function generateParams($lat, $lng)
@@ -55,7 +87,7 @@ class MapController extends Controller
             'left' => $pointO,
             'right' => $pointL,
             'top' => $pointN
-        ];  
+        ];
 
         return $points;
     }

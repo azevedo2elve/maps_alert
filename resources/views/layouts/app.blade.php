@@ -45,9 +45,13 @@
                     </div>
                 </form>
             </div>
-
-            @yield('alert')
             
+        </div>
+
+        <div class="flex flex-row border border-blue-600">
+            <div class="flex-col border border-red-600">
+                @yield('alert')
+            </div>
         </div>
     </div>
 
