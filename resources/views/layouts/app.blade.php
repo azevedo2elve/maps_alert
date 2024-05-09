@@ -55,6 +55,11 @@
         </div>
     </div>
 
-    @yield('scripts')
+    @yield('scriptsPolice')
+    @yield('scriptsHazard')
+    @yield('scriptsRoadClosed')
+    @yield('scriptsJam')
+    
+    @yield('scriptsMap')
 </body>
 </html>

@@ -33,33 +33,40 @@ class MapController extends Controller
         //dd($data);
 
         $data_type = [];
-        foreach ($data['alerts'] as $key => $value){
-            array_push($data_type, $value['subtype']);
-        }
+        if (array_key_exists("alerts", $data)) {
 
-        //dd($data_type);
-
-        $police = [];
-        $hazard = [];
-        $roadClosed = [];
-        $jam = [];
-        
-        foreach ($data['alerts'] as $key => $value){
-            if ($value['type'] == 'POLICE')
-            {
-                array_push($police, $value);
-            } elseif ($value['type'] == 'HAZARD')
-            {
-                array_push($hazard, $value);
-            } elseif ($value['type'] == 'ROAD_CLOSED')
-            {
-                array_push($roadClosed, $value);
-            } elseif ($value['type'] == 'JAM')
-            {
-                array_push($jam, $value);
+            foreach ($data['alerts'] as $key => $value){
+                array_push($data_type, $value['subtype']);
             }
+
+            //dd($data_type);
+
+            $police = [];
+            $hazard = [];
+            $roadClosed = [];
+            $jam = [];
+            
+            foreach ($data['alerts'] as $key => $value){
+                if ($value['type'] == 'POLICE')
+                {
+                    array_push($police, $value);
+                } elseif ($value['type'] == 'HAZARD')
+                {
+                    array_push($hazard, $value);
+                } elseif ($value['type'] == 'ROAD_CLOSED')
+                {
+                    array_push($roadClosed, $value);
+                } elseif ($value['type'] == 'JAM')
+                {
+                    array_push($jam, $value);
+                }
+            }
+        } else {
+            $police = '';
+            $hazard = '';
+            $roadClosed = '';
+            $jam = '';
         }
-        
         //dd($hazard);
 
         return view('map', compact('data', 'police', 'hazard', 'roadClosed', 'jam'));

@@ -6,7 +6,7 @@
 
 @section('alert')
     <?php
-        if(isset($data)){
+        if(isset($data) && array_key_exists("alerts", $data)){
             
             //dd($police);
             foreach ($police as $key => $value) {
@@ -36,22 +36,56 @@
 
             echo '<br>';
 
+            foreach ($jam as $key => $value) {
+                $key += 1;
+                echo '<div class="border border-red-600 flex justify-center">';
+                echo '<img src="/img/trafego.png" alt="Ícone" class="icone">' . '<div class="flex items-center pl-4">' . $key . ' - ' . 'TRÁFEGO</div> <br>';
+                echo '</div>';
+            }
+
+            echo '<br>';
+
             // JSON
             $json_police = json_encode($police);
             $json_hazard = json_encode($hazard);
             $json_roadClosed = json_encode($roadClosed);
+            $json_jam = json_encode($jam);
             //dd($json_roadClosed);
 
         } else {
             echo 'sem dados';
+
+            $json_police = '';
+            $json_hazard = '';
+            $json_roadClosed = '';
+            $json_jam = '';
         }
     ?>
 @endsection
 
-@section('scripts')
+@section('scriptsPolice')
     <script>
+        let array_police = <?php if(isset($data)){echo $json_police;} ?>
+    </script>
+@endsection
+@section('scriptsHazard')
+    <script>
+        let array_hazard = <?php if(isset($data)){echo $json_hazard;} ?>
+    </script>
+@endsection
+@section('scriptsRoadClosed')
+    <script>
+        let array_roadClosed = <?php if(isset($data)){echo $json_roadClosed;} ?>
+    </script>
+@endsection
+@section('scriptsJam')
+    <script>
+        let array_jam = <?php if(isset($data)){echo $json_jam;} ?>
+    </script>
+@endsection
 
-        let array_police = <?php echo $json_police; ?>
+@section('scriptsMap')
+    <script>
 
         var map = L.map('map').setView([-29.88048099596486, -51.17881447076798], 13);
 
@@ -64,9 +98,6 @@
             iconUrl: '/img/bloqueio.png',
             iconSize:     [30, 30], // size of the icon
         });
-
-        L.marker([-29.8812856688754, -51.17714881896973], {icon: roadClosedIcon}).addTo(map);
-
 
         var marker = {};
 
